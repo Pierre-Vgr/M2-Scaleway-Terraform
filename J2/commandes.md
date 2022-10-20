@@ -103,24 +103,12 @@ SHOW TABLES;
 
 ## Création des utilisateurs    
 
-```
 INSERT INTO userpvig  VALUE 
 ('John','Roberts','john.roberts@ynov.com'),
 ('Billy','Bogus','billy.bogus@ynov.com'),
 ('Claude','Nuage','claude.nuage@ynov.com'),
 ('Jean','Phillipe','jean.phillipe@ynov.com');
 
-SELECT * FROM userpvig; 
-+--------+----------+------------------------+
-| nom    | prénom   | mail                   |
-+--------+----------+------------------------+
-| John   | Roberts  | john.roberts@ynov.com  |
-| Billy  | Bogus    | billy.bogus@ynov.com   |
-| Claude | Nuage    | claude.nuage@ynov.com  |
-| Jean   | Phillipe | jean.phillipe@ynov.com |
-+--------+----------+------------------------+
-4 rows in set (0.02 sec)
-```
 
 
 
@@ -138,3 +126,31 @@ Status        creatingCreatedAt     1 second from now
 InstanceName  rdom-pvig
 Region        fr-parSameRegion    true
 ```
+
+### Suppression de la table User
+```
+USE test
+DROP TABLE User;
+
+Output :
+Query OK, 0 rows affected (0.07 sec)
+```
+
+### Restauration Backup de la BDD
+```
+scw.exe rdb backup restore ac995cb9-65c8-421c-9cb4-3e4d9cc9afb4 database-name=test instance-id=e0b71969-c33a-4351-9bf0-d5d5727d12af region=fr-par
+
+Output:
+ID            ac995cb9-65c8-421c-9cb4-3e4d9cc9afb4
+InstanceID    e0b71969-c33a-4351-9bf0-d5d5727d12af
+DatabaseName  test
+Name          rdombackup
+Status        restoring
+Size          948 B
+CreatedAt     27 minutes ago
+UpdatedAt     27 minutes ago
+InstanceName  rdom-pvig
+Region        fr-par
+SameRegion    true
+```
+
