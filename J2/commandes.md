@@ -123,3 +123,18 @@ SELECT * FROM userpvig;
 ```
 
 
+
+
+### Création du Backup de la BDD
+
+```
+scw rdb backup create instance-id=e0b71969-c33a-4351-9bf0-d5d5727d12af database-name=test name=rdombackup region=fr-par
+
+Output:
+ID            ac995cb9-65c8-421c-9cb4-3e4d9cc9afb4
+InstanceID    e0b71969-c33a-4351-9bf0-d5d5727d12afDatabaseName  test
+Name          rdombackup
+Status        creatingCreatedAt     1 second from now
+InstanceName  rdom-pvig
+Region        fr-parSameRegion    true
+```
