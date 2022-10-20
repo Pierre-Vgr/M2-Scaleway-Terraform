@@ -104,13 +104,18 @@ mysql> SHOW TABLES;
 
 ## Création des utilisateurs    
 
+<<<<<<< HEAD
 ```
 mysql> INSERT INTO userpvig  VALUE 
+=======
+INSERT INTO userpvig  VALUE 
+>>>>>>> 63b71cb92f962e1985a5ba4abfa59168a0a3a8f8
 ('John','Roberts','john.roberts@ynov.com'),
 ('Billy','Bogus','billy.bogus@ynov.com'),
 ('Claude','Nuage','claude.nuage@ynov.com'),
 ('Jean','Phillipe','jean.phillipe@ynov.com');
 
+<<<<<<< HEAD
 mysql> SELECT * FROM userpvig; 
 +--------+----------+------------------------+
 | nom    | prénom   | mail                   |
@@ -122,6 +127,8 @@ mysql> SELECT * FROM userpvig;
 +--------+----------+------------------------+
 4 rows in set (0.02 sec)
 ```
+=======
+>>>>>>> 63b71cb92f962e1985a5ba4abfa59168a0a3a8f8
 
 
 ## Création du Backup de la BDD
@@ -138,6 +145,7 @@ InstanceName  rdom-pvig
 Region        fr-parSameRegion    true
 ```
 
+<<<<<<< HEAD
 ## Suppression des utilisateurs
 
 ```
@@ -148,3 +156,32 @@ Empty set (0.02 sec)
 ```
 
 # CAS 2
+=======
+### Suppression de la table User
+```
+USE test
+DROP TABLE User;
+
+Output :
+Query OK, 0 rows affected (0.07 sec)
+```
+
+### Restauration Backup de la BDD
+```
+scw.exe rdb backup restore ac995cb9-65c8-421c-9cb4-3e4d9cc9afb4 database-name=test instance-id=e0b71969-c33a-4351-9bf0-d5d5727d12af region=fr-par
+
+Output:
+ID            ac995cb9-65c8-421c-9cb4-3e4d9cc9afb4
+InstanceID    e0b71969-c33a-4351-9bf0-d5d5727d12af
+DatabaseName  test
+Name          rdombackup
+Status        restoring
+Size          948 B
+CreatedAt     27 minutes ago
+UpdatedAt     27 minutes ago
+InstanceName  rdom-pvig
+Region        fr-par
+SameRegion    true
+```
+
+>>>>>>> 63b71cb92f962e1985a5ba4abfa59168a0a3a8f8
