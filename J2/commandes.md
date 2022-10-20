@@ -103,11 +103,21 @@ SHOW TABLES;
 
 ## Création des utilisateurs    
 
+```
 INSERT INTO userpvig  VALUE 
 ('John','Roberts','john.roberts@ynov.com'),
 ('Billy','Bogus','billy.bogus@ynov.com'),
 ('Claude','Nuage','claude.nuage@ynov.com'),
 ('Jean','Phillipe','jean.phillipe@ynov.com');
 
-
-
+SELECT * FROM userpvig; 
++--------+----------+------------------------+
+| nom    | prénom   | mail                   |
++--------+----------+------------------------+
+| John   | Roberts  | john.roberts@ynov.com  |
+| Billy  | Bogus    | billy.bogus@ynov.com   |
+| Claude | Nuage    | claude.nuage@ynov.com  |
+| Jean   | Phillipe | jean.phillipe@ynov.com |
++--------+----------+------------------------+
+4 rows in set (0.02 sec)
+```
