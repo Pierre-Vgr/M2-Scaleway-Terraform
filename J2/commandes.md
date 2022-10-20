@@ -69,7 +69,8 @@ e0b71969-c33a-4351-9bf0-d5d5727d12af  rdom-pvig                  db-dev-s   read
 scw rdb database create instance-id=e0b71969-c33a-4351-9bf0-d5d5727d12af name=test
 ```
 
-## Création des utilisateurs
+## Création de la table
+
 
 <!-- ### Ajout de la variable d'environement MySQL
 
@@ -79,3 +80,34 @@ scw rdb database create instance-id=e0b71969-c33a-4351-9bf0-d5d5727d12af name=te
 ```
 scw rdb instance connect e0b71969-c33a-4351-9bf0-d5d5727d12af database=test username=admin region=fr-par
 ``` -->
+```
+mysql -h 51.159.207.166 --port 32485 -p -u admin
+
+USE test;
+CREATE TABLE userpvig (
+    nom varchar(255),
+    prénom varchar(255),
+    mail varchar(255 
+);
+
+SHOW TABLES;
+
++----------------+
+| Tables_in_test |
++----------------+
+| User           |
+| userpvig       |
++----------------+
+2 rows in set (0.02 sec)
+```
+
+## Création des utilisateurs    
+
+INSERT INTO userpvig  VALUE 
+('John','Roberts','john.roberts@ynov.com'),
+('Billy','Bogus','billy.bogus@ynov.com'),
+('Claude','Nuage','claude.nuage@ynov.com'),
+('Jean','Phillipe','jean.phillipe@ynov.com');
+
+
+
