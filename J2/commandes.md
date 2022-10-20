@@ -1,3 +1,4 @@
+# CAS 1
 ## Installation de chocolatey
 
 ```
@@ -145,3 +146,5 @@ mysql> DELETE * FROM userpivg;
 mysql> SELECT * FROM userpvig; 
 Empty set (0.02 sec)
 ```
+
+# CAS 2
