@@ -71,12 +71,11 @@ scw rdb database create instance-id=e0b71969-c33a-4351-9bf0-d5d5727d12af name=te
 
 ## Création des utilisateurs
 
-## Connexion à la base via CLI local
-```
-scw rdb instance connect e0b71969-c33a-4351-9bf0-d5d5727d12af database=test username=admin  region=fr-par
-<!-- cli-db=mysql -->
-```
-
-### Ajout de la variable d'environement MySQL
+<!-- ### Ajout de la variable d'environement MySQL
 
 ![](variable.png)
+
+### Connexion à la base via CLI local
+```
+scw rdb instance connect e0b71969-c33a-4351-9bf0-d5d5727d12af database=test username=admin cli-db=mysqlsh region=fr-par
+``` -->
