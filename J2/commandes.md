@@ -14,14 +14,33 @@ choco install scaleway-cli
 ```
 scw init
 
-Enter a valid access-key: SCWYJJHCEN3TR4P74NHG
+Enter a valid access-key: SCWYJJHCEN******
 
-Enter a valid secret-key: b3f2da2d-2dfc-4896-80d3-d9c399e501a6
+Enter a valid secret-key: b3f2da2d-2dfc-4896-80d3-**************
+```
+
+### récupération de l'id de projet
+
+```
+$ curl https://api.scaleway.com/account/v1/tokens/$ACCESS_KEY -H "X-Auth-Token: $SECRET_KEY"
 ```
 
 ### Création de l'instance
 
 ```
-scw rdb instance create project-id=59972b2a-5ceb-447d-9266-ef00f9591ce1 name=rdom-pvig engine=MySQL-8 user-name=admin password=Azerty77* node-type=DB-DEV-S is-ha-cluster=false disable-backup=true volume-type=lssd backup-same-region=true region=fr-par
+scw rdb instance create project-id=59972b2a-5ceb-447d-9266-ef00f9591ce1 name=rdom-pvig engine=MySQL-8 user-name=admin password=********** node-type=DB-DEV-S is-ha-cluster=false disable-backup=false volume-type=lssd backup-same-region=true region=fr-par
 
+```
+
+### Récuperation de l'id de base
+
+```
+scw rdb instance list
+
+```
+
+### Création de la base
+
+```
+scw rdb database create instance-id=e0b71969-c33a-4351-9bf0-d5d5727d12af
 ```
