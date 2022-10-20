@@ -83,14 +83,14 @@ scw rdb instance connect e0b71969-c33a-4351-9bf0-d5d5727d12af database=test user
 ```
 mysql -h 51.159.207.166 --port 32485 -p -u admin
 
-USE test;
-CREATE TABLE userpvig (
+mysql> USE test;
+mysql> CREATE TABLE userpvig (
     nom varchar(255),
     prénom varchar(255),
     mail varchar(255 
 );
 
-SHOW TABLES;
+mysql> SHOW TABLES;
 
 +----------------+
 | Tables_in_test |
@@ -104,13 +104,13 @@ SHOW TABLES;
 ## Création des utilisateurs    
 
 ```
-INSERT INTO userpvig  VALUE 
+mysql> INSERT INTO userpvig  VALUE 
 ('John','Roberts','john.roberts@ynov.com'),
 ('Billy','Bogus','billy.bogus@ynov.com'),
 ('Claude','Nuage','claude.nuage@ynov.com'),
 ('Jean','Phillipe','jean.phillipe@ynov.com');
 
-SELECT * FROM userpvig; 
+mysql> SELECT * FROM userpvig; 
 +--------+----------+------------------------+
 | nom    | prénom   | mail                   |
 +--------+----------+------------------------+
@@ -123,9 +123,7 @@ SELECT * FROM userpvig;
 ```
 
 
-
-
-### Création du Backup de la BDD
+## Création du Backup de la BDD
 
 ```
 scw rdb backup create instance-id=e0b71969-c33a-4351-9bf0-d5d5727d12af database-name=test name=rdombackup region=fr-par
@@ -137,4 +135,13 @@ Name          rdombackup
 Status        creatingCreatedAt     1 second from now
 InstanceName  rdom-pvig
 Region        fr-parSameRegion    true
+```
+
+## Suppression des utilisateurs
+
+```
+mysql> DELETE * FROM userpivg;
+
+mysql> SELECT * FROM userpvig; 
+Empty set (0.02 sec)
 ```
