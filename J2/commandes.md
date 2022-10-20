@@ -104,31 +104,12 @@ mysql> SHOW TABLES;
 
 ## Création des utilisateurs    
 
-<<<<<<< HEAD
-```
-mysql> INSERT INTO userpvig  VALUE 
-=======
 INSERT INTO userpvig  VALUE 
->>>>>>> 63b71cb92f962e1985a5ba4abfa59168a0a3a8f8
 ('John','Roberts','john.roberts@ynov.com'),
 ('Billy','Bogus','billy.bogus@ynov.com'),
 ('Claude','Nuage','claude.nuage@ynov.com'),
 ('Jean','Phillipe','jean.phillipe@ynov.com');
 
-<<<<<<< HEAD
-mysql> SELECT * FROM userpvig; 
-+--------+----------+------------------------+
-| nom    | prénom   | mail                   |
-+--------+----------+------------------------+
-| John   | Roberts  | john.roberts@ynov.com  |
-| Billy  | Bogus    | billy.bogus@ynov.com   |
-| Claude | Nuage    | claude.nuage@ynov.com  |
-| Jean   | Phillipe | jean.phillipe@ynov.com |
-+--------+----------+------------------------+
-4 rows in set (0.02 sec)
-```
-=======
->>>>>>> 63b71cb92f962e1985a5ba4abfa59168a0a3a8f8
 
 
 ## Création du Backup de la BDD
@@ -145,18 +126,6 @@ InstanceName  rdom-pvig
 Region        fr-parSameRegion    true
 ```
 
-<<<<<<< HEAD
-## Suppression des utilisateurs
-
-```
-mysql> DELETE * FROM userpivg;
-
-mysql> SELECT * FROM userpvig; 
-Empty set (0.02 sec)
-```
-
-# CAS 2
-=======
 ### Suppression de la table User
 ```
 USE test
@@ -184,4 +153,4 @@ Region        fr-par
 SameRegion    true
 ```
 
->>>>>>> 63b71cb92f962e1985a5ba4abfa59168a0a3a8f8
+# CAS 2
