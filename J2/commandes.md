@@ -153,4 +153,7 @@ Region        fr-par
 SameRegion    true
 ```
 
+---
+
 # CAS 2
+
