@@ -204,10 +204,31 @@ RuntimeMessage  -
 Noter l'ID de la fonction
 
 TO DO 
-- [ ] Calculate the length of my zip file
-- [ ] CLI: ask for S3 upload URL with content length
-- [ ] Use a S3 client to push my code to the S3
+- [X] Calculate the length of my zip file
+- [X] CLI: ask for S3 upload URL with content length
+- [X] Use a S3 client to push my code to the S3
 - [ ] CLI: call deploy funtion
+
+Créer une archive à partir du fichier contenant notre fonction
+Récupérer la taille de l'archive
+
+```
+scw function function get-upload-url ebc43ef9-96d8-40d3-8df0-add24233c21f content-length=586
+```
+Output:
+```
+https://s3.fr-par.scw.cloud/scw-database-srvless-prod/uploads/function-ebc43ef9-96d8-40d3-8df0-add24233c21f.zip?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=SCW6Z6VKJVG81FQZVB14%2F20221025%2Ffr-par%2Fs3%2Faws4_request&X-Amz-Date=20221025T185518Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=content-length%3Bcontent-type%3Bhost&X-Amz-Signature=0d17c62355de3783ca66b2857354ee590aa50e59f9b0f78d8e1affc508c48295
+
+``` 
+
+Pousser la fonction grace au lien
+
+``` 
+
+
+```
+
+
 
 <!-- ## Création d'un namespace
 
