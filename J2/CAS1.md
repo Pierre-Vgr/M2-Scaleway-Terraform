@@ -63,27 +63,26 @@ e150c726-4d27-42ad-973d-3f538f86b7e9  rdb-group9                 db-gp-xs   read
 e0b71969-c33a-4351-9bf0-d5d5727d12af  rdom-pvig                  db-dev-s   ready   MySQL-8        fr-par
 ```
 
-
 ## Création de la base
 
 ```
 scw rdb database create instance-id=e0b71969-c33a-4351-9bf0-d5d5727d12af name=test
 ```
-
+---
 ## Création de la table
 
 
-<!-- ### Ajout de la variable d'environement MySQL
+### Ajout de la variable d'environement MySQL
 
 ![](variable.png)
 
 ### Connexion à la base via CLI local
 ```
 scw rdb instance connect e0b71969-c33a-4351-9bf0-d5d5727d12af database=test username=admin region=fr-par
-``` -->
 ```
-mysql -h 51.159.207.166 --port 32485 -p -u admin
+### Création de la table
 
+```
 mysql> USE test;
 mysql> CREATE TABLE userpvig (
     nom varchar(255),
@@ -104,13 +103,14 @@ mysql> SHOW TABLES;
 
 ## Création des utilisateurs    
 
-INSERT INTO userpvig  VALUE 
+```INSERT INTO userpvig  VALUE 
 ('John','Roberts','john.roberts@ynov.com'),
 ('Billy','Bogus','billy.bogus@ynov.com'),
 ('Claude','Nuage','claude.nuage@ynov.com'),
 ('Jean','Phillipe','jean.phillipe@ynov.com');
+```
 
-
+---
 
 ## Création du Backup de la BDD
 
@@ -153,4 +153,3 @@ Region        fr-par
 SameRegion    true
 ```
 
----
