@@ -1,0 +1,5 @@
+zone                           = "fr-par-1"
+region                         = "fr-par"
+env                            = "dev"
+project_id                     = "9972b2a-5ceb-447d-9266-ef00f9591ce1"
+auth_token                     = "5d4f9498-a9e3-47cd-b010-eb1376a0b2eb"
