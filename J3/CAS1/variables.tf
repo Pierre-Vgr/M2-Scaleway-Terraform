@@ -19,3 +19,8 @@ variable "auth_token" {
     type = string
     description = "Scaleway authtentication token used in the function"
 }
+
+variable "auth_ip" {
+  type = string
+  description = "Adresse IP autorisée à se connecter en SSH"
+}
