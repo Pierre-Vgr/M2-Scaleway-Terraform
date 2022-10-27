@@ -1,4 +1,4 @@
-resource "scaleway_rdb_instance" "rdom-pvig-rdb" {
+resource "scaleway_rdb_instance" "main" {
   name           = "rdom-pvig-rdb-rdb"
   node_type      = "DB-DEV-S"
   engine         = "MySQL-8"
@@ -8,7 +8,7 @@ resource "scaleway_rdb_instance" "rdom-pvig-rdb" {
   password       = "Azerty77"
 }
 
-resource "scaleway_rdb_database" "rdom-pvig-db" {
-  instance_id    = scaleway_rdb_instance.rdom-pvig-db.id
+resource "scaleway_rdb_database" "main" {
+  instance_id    = scaleway_rdb_instance.main.id
   name           = "my-new-database"
 }
