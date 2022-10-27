@@ -4,10 +4,9 @@
 resource "scaleway_vpc_private_network" "pvig_priv" {
     name = "pvig_subnet"
 }
-# création des l'IP publiques des instances
+# création des l'IP publiques de l'instance pvig-ins
 
 resource "scaleway_instance_ip" "pvig_ins_ip" {}
-
 
 # Création du security group
 
@@ -41,20 +40,27 @@ resource "scaleway_rdb_database" "main" {
   name           = "my-new-database"
 }
 
-# création du volume de l'instance web
+# création du volume de l'instance pvig-ins
 
 resource "scaleway_instance_volume" "data" {
   size_in_gb     = 30
   type           = "b_ssd"
 }
 
-# création de l'instance web
+# création de l'instance pvig-ins
 
 resource "scaleway_instance_server" "web" {
   type           = "DEV1-S"
   image          = "ubuntu_jammy"
   name           = "pvig-ins"
   ip_id = scaleway_instance_ip.pvig_ins_ip.id
+  security_group_id = scaleway_instance_security_group.pvig_sg.id
+
+  private_network {
+    pn_id = scaleway_vpc_private_network.pvig_priv.id
+  }
+
+  
 
   root_volume {
     delete_on_termination = false

@@ -1,4 +1,4 @@
-## Création de l'instance RDB
+## Création des instances & bases
 
 `mkdir scaleway-terraform && cd scaleway-terraform`
 
@@ -272,4 +272,47 @@ scaleway_rdb_instance.main: Still creating... [4m30s elapsed]
 scaleway_rdb_instance.main: Creation complete after 4m33s [id=fr-par/d50e124a-e5cb-4e93-9268-13b60fd8b042]
 scaleway_rdb_database.main: Creating...
 scaleway_rdb_database.main: Creation complete after 1s [id=fr-par/d50e124a-e5cb-4e93-9268-13b60fd8b042/my-new-database]
+```
+
+test connexion ssh
+
+`ssh root@163.172.130.18`
+
+```
+The authenticity of host '163.172.130.18 (163.172.130.18)' can't be established.
+ECDSA key fingerprint is SHA256:PffOejXDH30PjT9J6/4vHc5JnyiM3HgWQ5j+qWRRgv8.
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added '163.172.130.18' (ECDSA) to the list of known hosts.
+Welcome to Ubuntu 22.04 LTS (GNU/Linux 5.15.0-41-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+  System information as of Thu Oct 27 12:42:18 UTC 2022
+
+  System load:  0.21533203125     Processes:             106
+  Usage of /:   9.7% of 17.87GB   Users logged in:       0
+  Memory usage: 12%               IPv4 address for ens2: 10.72.34.21
+  Swap usage:   0%
+
+26 updates can be applied immediately.
+12 of these updates are standard security updates.
+To see these additional updates run: apt list --upgradable
+
+
+The list of available updates is more than a week old.
+To check for new updates run: sudo apt update
+
+
+The programs included with the Ubuntu system are free software;
+the exact distribution terms for each program are described in the
+individual files in /usr/share/doc/*/copyright.
+
+Ubuntu comes with ABSOLUTELY NO WARRANTY, to the extent permitted by
+applicable law.
+
+root@pvig-ins:~# exit
+logout
+Connection to 163.172.130.18 closed.
 ```
