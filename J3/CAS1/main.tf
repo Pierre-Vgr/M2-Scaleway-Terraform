@@ -78,17 +78,6 @@ resource "scaleway_rdb_database" "main" {
   name           = "my-new-database"
 }
 
-# création du volume de l'instance pvig-ins
-
-resource "scaleway_instance_private_nic" "pnic01" {
-    server_id          = scaleway_instance_server.pvig_ins.id
-    private_network_id = scaleway_vpc_private_network.pvig_priv.id
-}
-
-resource "scaleway_instance_volume" "data" {
-  size_in_gb     = 30
-  type           = "b_ssd"
-}
 
 # création de l'instance pvig-ins
 
@@ -107,5 +96,4 @@ resource "scaleway_instance_server" "pvig_ins" {
     delete_on_termination = false
   }
 
-  additional_volume_ids = [ scaleway_instance_volume.data.id ]
 }

@@ -20,7 +20,11 @@ variable "auth_token" {
     description = "Scaleway authtentication token used in the function"
 }
 
-variable "auth_ip" {
-  type = string
-  description = "Adresse IP autorisée à se connecter en SSH"
+
+variable "instance_count" {
+  default = "2"
+}
+
+variable "instance_type" {
+  default = "DEV1-S"
 }
