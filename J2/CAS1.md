@@ -1,3 +1,4 @@
+# CAS 1
 ## Installation de chocolatey
 
 ```
@@ -83,14 +84,14 @@ scw rdb instance connect e0b71969-c33a-4351-9bf0-d5d5727d12af database=test user
 ```
 mysql -h 51.159.207.166 --port 32485 -p -u admin
 
-USE test;
-CREATE TABLE userpvig (
+mysql> USE test;
+mysql> CREATE TABLE userpvig (
     nom varchar(255),
     prénom varchar(255),
     mail varchar(255 
 );
 
-SHOW TABLES;
+mysql> SHOW TABLES;
 
 +----------------+
 | Tables_in_test |
@@ -111,9 +112,7 @@ INSERT INTO userpvig  VALUE
 
 
 
-
-
-### Création du Backup de la BDD
+## Création du Backup de la BDD
 
 ```
 scw rdb backup create instance-id=e0b71969-c33a-4351-9bf0-d5d5727d12af database-name=test name=rdombackup region=fr-par
@@ -154,3 +153,4 @@ Region        fr-par
 SameRegion    true
 ```
 
+---
