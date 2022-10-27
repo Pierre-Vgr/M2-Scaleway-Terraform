@@ -13,7 +13,6 @@ Création des fichiers provider.tf, main.tf, variables.tf & terraform.tfvars.
 
 Output:
 ```
-
 Initializing the backend...
 
 Initializing provider plugins...
@@ -46,17 +45,62 @@ commands will detect it and remind you to do so if necessary.
 Output:
 
 ```
-Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:
+erraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:
   + create
 
 Terraform will perform the following actions:
+
+  # scaleway_instance_server.web will be created
+  + resource "scaleway_instance_server" "web" {
+      + additional_volume_ids            = (known after apply)
+      + boot_type                        = "local"
+      + bootscript_id                    = (known after apply)
+      + enable_dynamic_ip                = false
+      + enable_ipv6                      = false
+      + id                               = (known after apply)
+      + image                            = "ubuntu_jammy"
+      + ipv6_address                     = (known after apply)
+      + ipv6_gateway                     = (known after apply)
+      + ipv6_prefix_length               = (known after apply)
+      + name                             = "pvig-ins"
+      + organization_id                  = (known after apply)
+      + placement_group_policy_respected = (known after apply)
+      + private_ip                       = (known after apply)
+      + project_id                       = (known after apply)
+      + public_ip                        = (known after apply)
+      + security_group_id                = (known after apply)
+      + state                            = "started"
+      + type                             = "DEV1-S"
+      + zone                             = (known after apply)
+
+      + root_volume {
+          + boot                  = false
+          + delete_on_termination = false
+          + name                  = (known after apply)
+          + size_in_gb            = (known after apply)
+          + volume_id             = (known after apply)
+          + volume_type           = (known after apply)
+        }
+    }
+
+  # scaleway_instance_volume.data will be created
+  + resource "scaleway_instance_volume" "data" {
+      + id              = (known after apply)
+      + name            = (known after apply)
+      + organization_id = (known after apply)
+      + project_id      = (known after apply)
+      + server_id       = (known after apply)
+      + size_in_gb      = 100
+      + type            = "b_ssd"
+      + zone            = (known after apply)
+    }
 
   # scaleway_rdb_database.main will be created
   + resource "scaleway_rdb_database" "main" {
       + id          = (known after apply)
       + instance_id = (known after apply)
       + managed     = (known after apply)
-      + name        = "rdom-pvig-db"
+      + name        = "my-new-database"
       + owner       = (known after apply)
       + size        = (known after apply)
     }
@@ -74,7 +118,7 @@ Terraform will perform the following actions:
       + id                        = (known after apply)
       + is_ha_cluster             = true
       + load_balancer             = (known after apply)
-      + name                      = "rdom-pvig-rdb-rdb"
+      + name                      = "pvig-rdb"
       + node_type                 = "DB-DEV-S"
       + organization_id           = (known after apply)
       + password                  = (sensitive value)
@@ -87,11 +131,8 @@ Terraform will perform the following actions:
       + volume_type               = "lssd"
     }
 
-Plan: 2 to add, 0 to change, 0 to destroy.
+Plan: 4 to add, 0 to change, 0 to destroy.
 
-──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-
-Note: You didn't use the -out option to save this plan, so Terraform can't guarantee to take exactly these actions if you run "terraform apply" now.
 ```
 
 `terraform apply`
@@ -104,12 +145,57 @@ Terraform used the selected providers to generate the following execution plan. 
 
 Terraform will perform the following actions:
 
+  # scaleway_instance_server.web will be created
+  + resource "scaleway_instance_server" "web" {
+      + additional_volume_ids            = (known after apply)
+      + boot_type                        = "local"
+      + bootscript_id                    = (known after apply)
+      + enable_dynamic_ip                = false
+      + enable_ipv6                      = false
+      + id                               = (known after apply)
+      + image                            = "ubuntu_jammy"
+      + ipv6_address                     = (known after apply)
+      + ipv6_gateway                     = (known after apply)
+      + ipv6_prefix_length               = (known after apply)
+      + name                             = "pvig-ins"
+      + organization_id                  = (known after apply)
+      + placement_group_policy_respected = (known after apply)
+      + private_ip                       = (known after apply)
+      + project_id                       = (known after apply)
+      + public_ip                        = (known after apply)
+      + security_group_id                = (known after apply)
+      + state                            = "started"
+      + type                             = "DEV1-S"
+      + zone                             = (known after apply)
+
+      + root_volume {
+          + boot                  = false
+          + delete_on_termination = false
+          + name                  = (known after apply)
+          + size_in_gb            = (known after apply)
+          + volume_id             = (known after apply)
+          + volume_type           = (known after apply)
+        }
+    }
+
+  # scaleway_instance_volume.data will be created
+  + resource "scaleway_instance_volume" "data" {
+      + id              = (known after apply)
+      + name            = (known after apply)
+      + organization_id = (known after apply)
+      + project_id      = (known after apply)
+      + server_id       = (known after apply)
+      + size_in_gb      = 100
+      + type            = "b_ssd"
+      + zone            = (known after apply)
+    }
+
   # scaleway_rdb_database.main will be created
   + resource "scaleway_rdb_database" "main" {
       + id          = (known after apply)
       + instance_id = (known after apply)
       + managed     = (known after apply)
-      + name        = "rdom-pvig-db"
+      + name        = "my-new-database"
       + owner       = (known after apply)
       + size        = (known after apply)
     }
@@ -127,7 +213,7 @@ Terraform will perform the following actions:
       + id                        = (known after apply)
       + is_ha_cluster             = true
       + load_balancer             = (known after apply)
-      + name                      = "rdom-pvig-rdb-rdb"
+      + name                      = "pvig-rdb"
       + node_type                 = "DB-DEV-S"
       + organization_id           = (known after apply)
       + password                  = (sensitive value)
@@ -140,7 +226,7 @@ Terraform will perform the following actions:
       + volume_type               = "lssd"
     }
 
-Plan: 2 to add, 0 to change, 0 to destroy.
+Plan: 4 to add, 0 to change, 0 to destroy.
 
 Do you want to perform these actions?
   Terraform will perform the actions described above.
@@ -148,10 +234,17 @@ Do you want to perform these actions?
 
   Enter a value: yes
 
+scaleway_instance_volume.data: Creating...
 scaleway_rdb_instance.main: Creating...
+scaleway_instance_volume.data: Creation complete after 1s [id=fr-par-1/6ff12c2d-0eb2-431e-8269-2789e76798ae]
+scaleway_instance_server.web: Creating...
 scaleway_rdb_instance.main: Still creating... [10s elapsed]
+scaleway_instance_server.web: Still creating... [10s elapsed]
 scaleway_rdb_instance.main: Still creating... [20s elapsed]
+scaleway_instance_server.web: Still creating... [20s elapsed]
 scaleway_rdb_instance.main: Still creating... [30s elapsed]
+scaleway_instance_server.web: Still creating... [30s elapsed]
+scaleway_instance_server.web: Creation complete after 35s [id=fr-par-1/d0b18d29-da36-4fa5-ab52-571b64e08b19]
 scaleway_rdb_instance.main: Still creating... [40s elapsed]
 scaleway_rdb_instance.main: Still creating... [50s elapsed]
 scaleway_rdb_instance.main: Still creating... [1m0s elapsed]
@@ -176,12 +269,7 @@ scaleway_rdb_instance.main: Still creating... [4m0s elapsed]
 scaleway_rdb_instance.main: Still creating... [4m10s elapsed]
 scaleway_rdb_instance.main: Still creating... [4m20s elapsed]
 scaleway_rdb_instance.main: Still creating... [4m30s elapsed]
-scaleway_rdb_instance.main: Still creating... [4m40s elapsed]
-scaleway_rdb_instance.main: Still creating... [4m50s elapsed]
-scaleway_rdb_instance.main: Still creating... [5m0s elapsed]
-scaleway_rdb_instance.main: Creation complete after 5m3s [id=fr-par/27c36d21-6c03-4055-88e1-e94e04358e32]
+scaleway_rdb_instance.main: Creation complete after 4m33s [id=fr-par/d50e124a-e5cb-4e93-9268-13b60fd8b042]
 scaleway_rdb_database.main: Creating...
-scaleway_rdb_database.main: Creation complete after 1s [id=fr-par/27c36d21-6c03-4055-88e1-e94e04358e32/rdom-pvig-db]
-
-Apply complete! Resources: 2 added, 0 changed, 0 destroyed
+scaleway_rdb_database.main: Creation complete after 1s [id=fr-par/d50e124a-e5cb-4e93-9268-13b60fd8b042/my-new-database]
 ```
