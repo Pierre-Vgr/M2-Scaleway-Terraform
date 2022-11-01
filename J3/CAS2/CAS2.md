@@ -190,3 +190,136 @@ Terraform will perform the following actions:
       + zone            = (known after apply)
     }
 ``` 
+## DCHP sur les réseaux isolés
+
+Pour permettre à nos VM de communiquer, nous avons tenté de leur fournir du DHCP grace à une public gateway. 
+
+```
+resource "scaleway_vpc_public_gateway_dhcp" "main" {
+    subnet = "10.100.14.0/24"
+}
+
+resource "scaleway_vpc_public_gateway_ip" "main" {
+}
+
+resource "scaleway_vpc_public_gateway" "main" {
+  name  = "pvig-gw"
+  type  = "VPC-GW-S"
+  ip_id = scaleway_vpc_public_gateway_ip.main.id
+}
+resource "scaleway_vpc_public_gateway_pat_rule" "main" {
+  gateway_id   = scaleway_vpc_public_gateway.main.id
+  private_ip   = scaleway_vpc_public_gateway_dhcp.main.address
+  private_port = 80
+  public_port  = 80
+  protocol     = "both"
+  depends_on   = [scaleway_vpc_gateway_network.main, scaleway_vpc_private_network.pvig_priv]
+}
+
+resource "scaleway_vpc_gateway_network" "main" {
+  gateway_id         = scaleway_vpc_public_gateway.main.id
+  private_network_id = [scaleway_vpc_private_network.pvig_priv.id, scaleway_vpc_private_network.iso_priv.id]
+  dhcp_id            = scaleway_vpc_public_gateway_dhcp.main.id
+  cleanup_dhcp       = true
+  enable_masquerade  = true
+  depends_on         = [scaleway_vpc_public_gateway_ip.main, scaleway_vpc_private_network.pvig_priv]
+}
+```
+L'un des problème rencontré est que nous n'avons pas réussi à affecter plusieurs private network à notre gateway depuis terraform :
+```
+╷
+│ Error: Incorrect attribute value type
+│ 
+│   on main.tf line 34, in resource "scaleway_vpc_gateway_network" "main":
+│   34:   private_network_id = [scaleway_vpc_private_network.pvig_priv.id, scaleway_vpc_private_network.iso_priv.id]
+│ 
+│ Inappropriate value for attribute "private_network_id": string required.
+╵
+```
+
+Output terraform apply :
+
+```
+Terraform will perform the following actions:
+
+  # scaleway_vpc_gateway_network.main will be created
+  + resource "scaleway_vpc_gateway_network" "main" {
+      + cleanup_dhcp       = true
+      + created_at         = (known after apply)
+      + dhcp_id            = (known after apply)
+      + enable_dhcp        = true
+      + enable_masquerade  = true
+      + gateway_id         = (known after apply)
+      + id                 = (known after apply)
+      + mac_address        = (known after apply)
+      + private_network_id = "fr-par-1/70fd60bf-6d8a-4226-a092-9fbec57dc652"
+      + updated_at         = (known after apply)
+      + zone               = (known after apply)
+    }
+
+  # scaleway_vpc_public_gateway.main will be created
+  + resource "scaleway_vpc_public_gateway" "main" {
+      + bastion_port    = (known after apply)
+      + created_at      = (known after apply)
+      + enable_smtp     = (known after apply)
+      + id              = (known after apply)
+      + ip_id           = (known after apply)
+      + name            = "pvig-gw"
+      + organization_id = (known after apply)
+      + project_id      = (known after apply)
+      + type            = "VPC-GW-S"
+      + updated_at      = (known after apply)
+      + zone            = (known after apply)
+    }
+
+  # scaleway_vpc_public_gateway_dhcp.main will be created
+  + resource "scaleway_vpc_public_gateway_dhcp" "main" {
+      + address              = (known after apply)
+      + created_at           = (known after apply)
+      + dns_local_name       = (known after apply)
+      + dns_search           = (known after apply)
+      + dns_servers_override = (known after apply)
+      + enable_dynamic       = (known after apply)
+      + id                   = (known after apply)
+      + organization_id      = (known after apply)
+      + pool_high            = (known after apply)
+      + pool_low             = (known after apply)
+      + project_id           = (known after apply)
+      + push_default_route   = (known after apply)
+      + push_dns_server      = (known after apply)
+      + rebind_timer         = (known after apply)
+      + renew_timer          = (known after apply)
+      + subnet               = "10.100.14.0/24"
+      + updated_at           = (known after apply)
+      + valid_lifetime       = (known after apply)
+      + zone                 = (known after apply)
+    }
+
+  # scaleway_vpc_public_gateway_ip.main will be created
+  + resource "scaleway_vpc_public_gateway_ip" "main" {
+      + address         = (known after apply)
+      + created_at      = (known after apply)
+      + id              = (known after apply)
+      + organization_id = (known after apply)
+      + project_id      = (known after apply)
+      + reverse         = (known after apply)
+      + updated_at      = (known after apply)
+      + zone            = (known after apply)
+    }
+
+  # scaleway_vpc_public_gateway_pat_rule.main will be created
+  + resource "scaleway_vpc_public_gateway_pat_rule" "main" {
+      + created_at      = (known after apply)
+      + gateway_id      = (known after apply)
+      + id              = (known after apply)
+      + organization_id = (known after apply)
+      + private_ip      = (known after apply)
+      + private_port    = 80
+      + protocol        = "both"
+      + public_port     = 80
+      + updated_at      = (known after apply)
+      + zone            = (known after apply)
+    }
+```
+
+malgrès la création de la gateway, nos VM ne récupèrent pas d'adresse sur le même réseau
