@@ -15,10 +15,21 @@ variable "project_id" {
   description = "Your project ID"
 }
 
-variable "auth_token" {
+variable "access_key" {
     type = string
-    description = "Scaleway authtentication token used in the function"
+    description = "access key user rdom"
 }
+
+variable "secret_key" {
+    type = string
+    description = "secret key user rdom"
+}
+
+variable "ssh_key" {
+    type = string
+    description = "ssh key user rdom"
+}
+
 
 variable "auth_ip" {
   type = string
