@@ -1,12 +1,12 @@
 # Création du private network + DHCP
 
-resource "scaleway_vpc_private_network" "pvig_priv" {
-    name = "pvig-subnet"
-}
+# resource "scaleway_vpc_private_network" "pvig_priv" {
+#     name = "pvig-subnet"
+# }
 
-resource "scaleway_vpc_private_network" "iso_priv" {
-    name = "pvig-subnet-isolated"
-}
+# resource "scaleway_vpc_private_network" "iso_priv" {
+#     name = "pvig-subnet-isolated"
+# }
 
 # resource "scaleway_vpc_public_gateway_dhcp" "main" {
 #     subnet = "10.100.14.0/24"
@@ -46,9 +46,9 @@ resource "scaleway_instance_server" "main" {
   image          = "ubuntu_jammy"
   name           = "pvig-ins-${count.index + 1}"
 
-  private_network {
-    pn_id = scaleway_vpc_private_network.pvig_priv.id
-  }
+  # private_network {
+  #   pn_id = scaleway_vpc_private_network.pvig_priv.id
+  # }
 
     root_volume {
     delete_on_termination = false
@@ -56,19 +56,19 @@ resource "scaleway_instance_server" "main" {
 
 }
 
-# Création de l'instance isolée
+# # Création de l'instance isolée
 
-resource "scaleway_instance_server" "iso" {
-  type           = var.instance_type
-  image          = "ubuntu_jammy"
-  name           = "pvig-ins-isolated"
+# resource "scaleway_instance_server" "iso" {
+#   type           = var.instance_type
+#   image          = "ubuntu_jammy"
+#   name           = "pvig-ins-isolated"
 
-  private_network {
-    pn_id = scaleway_vpc_private_network.iso_priv.id
-  }
+#   private_network {
+#     pn_id = scaleway_vpc_private_network.iso_priv.id
+#   }
 
-    root_volume {
-    delete_on_termination = false
-  }
+#     root_volume {
+#     delete_on_termination = false
+#   }
 
-}
+# }
